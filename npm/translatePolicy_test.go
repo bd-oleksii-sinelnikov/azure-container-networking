@@ -2,6 +2,7 @@ package npm
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"reflect"
 	"testing"
@@ -841,7 +842,8 @@ func TestTranslateIngress(t *testing.T) {
 				util.IptablesModuleFlag,
 				util.IptablesCommentModuleFlag,
 				util.IptablesCommentFlag,
-				"ALLOW-ALL-TO-context:dev-AND-!testNotIn:frontend-IN-ns-testnamespace-TO-JUMP-TO-AZURE-NPM-TARGET-SETS",
+				fmt.Sprintf("ALLOW-ALL-TO-context:dev-AND-!testNotIn:frontend-IN-ns-testnamespace-TO-JUMP-TO-%s",
+					util.IptablesAzureIngressDropsChain),
 			},
 		},
 	}
@@ -1152,7 +1154,8 @@ func TestTranslateEgress(t *testing.T) {
 				util.IptablesModuleFlag,
 				util.IptablesCommentModuleFlag,
 				util.IptablesCommentFlag,
-				"ALLOW-ALL-FROM-context:dev-AND-!testNotIn:frontend-IN-ns-testnamespace-TO-JUMP-TO-AZURE-NPM-TARGET-SETS",
+				fmt.Sprintf("ALLOW-ALL-FROM-context:dev-AND-!testNotIn:frontend-IN-ns-testnamespace-TO-JUMP-TO-%s",
+					util.IptablesAzureEgressDropsChain),
 			},
 		},
 	}
@@ -2832,7 +2835,8 @@ func TestAllowAllFromAppBackend(t *testing.T) {
 				util.IptablesModuleFlag,
 				util.IptablesCommentModuleFlag,
 				util.IptablesCommentFlag,
-				"ALLOW-ALL-FROM-app:backend-IN-ns-testnamespace-TO-JUMP-TO-AZURE-NPM-TARGET-SETS",
+				fmt.Sprintf("ALLOW-ALL-FROM-app:backend-IN-ns-testnamespace-TO-JUMP-TO-%s",
+					util.IptablesAzureEgressDropsChain),
 			},
 		},
 	}
@@ -3689,7 +3693,8 @@ func TestDropPrecedenceOverAllow(t *testing.T) {
 				util.IptablesModuleFlag,
 				util.IptablesCommentModuleFlag,
 				util.IptablesCommentFlag,
-				"ALLOW-ALL-TO-app:test-AND-testIn:pod-A-IN-ns-default-TO-JUMP-TO-AZURE-NPM-TARGET-SETS",
+				fmt.Sprintf("ALLOW-ALL-TO-app:test-AND-testIn:pod-A-IN-ns-default-TO-JUMP-TO-%s",
+					util.IptablesAzureIngressDropsChain),
 			},
 		},
 		&iptm.IptEntry{
@@ -3777,7 +3782,8 @@ func TestDropPrecedenceOverAllow(t *testing.T) {
 				util.IptablesModuleFlag,
 				util.IptablesCommentModuleFlag,
 				util.IptablesCommentFlag,
-				"ALLOW-ALL-FROM-app:test-AND-testIn:pod-A-IN-ns-default-TO-JUMP-TO-AZURE-NPM-TARGET-SETS",
+				fmt.Sprintf("ALLOW-ALL-FROM-app:test-AND-testIn:pod-A-IN-ns-default-TO-JUMP-TO-%s",
+					util.IptablesAzureEgressDropsChain),
 			},
 		},
 		&iptm.IptEntry{
@@ -3929,7 +3935,8 @@ func TestNamedPorts(t *testing.T) {
 				util.IptablesModuleFlag,
 				util.IptablesCommentModuleFlag,
 				util.IptablesCommentFlag,
-				"ALLOW-ALL-TO-app:server-IN-ns-test-TO-JUMP-TO-AZURE-NPM-TARGET-SETS",
+				fmt.Sprintf("ALLOW-ALL-TO-app:server-IN-ns-test-TO-JUMP-TO-%s",
+					util.IptablesAzureIngressDropsChain),
 			},
 		},
 		&iptm.IptEntry{
