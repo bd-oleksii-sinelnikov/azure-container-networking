@@ -120,7 +120,7 @@ func getAzureNPMIngressChainRules() [][]string {
 		{
 			util.IptablesAzureIngressChain,
 			util.IptablesJumpFlag,
-			util.IptablesAzureIngressTargetChain,
+			util.IptablesAzureIngressDropsChain,
 		},
 	}
 }
@@ -200,7 +200,7 @@ func getAzureNPMEgressChainRules() [][]string {
 		{
 			util.IptablesAzureEgressChain,
 			util.IptablesJumpFlag,
-			util.IptablesAzureEgressTargetChain,
+			util.IptablesAzureEgressDropsChain,
 		},
 	}
 }

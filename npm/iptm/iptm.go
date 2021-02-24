@@ -35,8 +35,8 @@ var (
 		util.IptablesAzureIngressFromChain,
 		util.IptablesAzureEgressPortChain,
 		util.IptablesAzureEgressToChain,
-		util.IptablesAzureIngressTargetChain,
-		util.IptablesAzureEgressTargetChain,
+		util.IptablesAzureIngressDropsChain,
+		util.IptablesAzureEgressDropsChain,
 	}
 )
 
