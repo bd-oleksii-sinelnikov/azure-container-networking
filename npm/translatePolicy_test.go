@@ -3351,7 +3351,7 @@ func TestComplexPolicy(t *testing.T) {
 			},
 		},
 		&iptm.IptEntry{
-			Chain: util.IptablesAzureEgressDropsChain,
+			Chain: util.IptablesAzureIngressDropsChain,
 			Specs: []string{
 				util.IptablesModuleFlag,
 				util.IptablesSetModuleFlag,
